@@ -96,12 +96,12 @@ function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
         <input
           value={editValues.fixed_rate || ""}
           onChange={(e) => handleNumberChange(e, "fixed_rate")}
-          placeholder="Fixed Rate"
+          placeholder="Salary"
           className="px-2 py-1 border rounded"
         />
       </td>
 
-      <td className="px-4 py-3 border-r border-gray-200">
+      {/* <td className="px-4 py-3 border-r border-gray-200">
         <input
           value={editValues.salary_adjustment || ""}
           onChange={(e) => handleNumberChange(e, "salary_adjustment")}
@@ -200,7 +200,7 @@ function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
           placeholder="Remarks"
           className="px-2 py-1 border rounded"
         />
-      </td>
+      </td> */}
     </tr>
   );
 }

@@ -4,6 +4,7 @@ import Filter from "./Filter";
 import api from "../../assets/api";
 import { Button } from "@mui/material";
 import PayrollEditModal from "../cashier/PayrollEditModal";
+import ViewDTRModal from "./ViewDTRModal";
 
 function PayrollTable() {
   const [payrolls, setPayrolls] = useState([]);
@@ -38,7 +39,7 @@ function PayrollTable() {
       <div className="overflow-x-auto p-6">
         <div className="flex gap-4 flex-wrap justify-between items-center mb-4">
           <Search />
-          <Filter />
+          {/* <Filter /> */}
         </div>
 
         <table className="min-w-full border border-gray-200">
@@ -75,7 +76,7 @@ function PayrollTable() {
                     {payroll.status}
                   </td>
                   <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
-                    View
+                   <ViewDTRModal payrollId={payroll.id}/>
                   </td>
                   <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
                     {payroll.date_release || "N/A"}

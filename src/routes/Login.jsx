@@ -36,9 +36,9 @@ function Login() {
       });
 
       if (res.data.is_staff && res.data.is_superuser) {
-        navigate("/dashboard");
+        navigate("/DTR");
       } else if (res.data.is_staff && !res.data.is_superuser) {
-        navigate("/cashier-dashboard");
+        navigate("/payroll-lists");
       } else {
         navigate("/staff-dashboard");
       }

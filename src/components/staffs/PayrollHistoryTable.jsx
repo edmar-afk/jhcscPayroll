@@ -3,7 +3,7 @@ import Search from "../dtr/Search";
 import api from "../../assets/api";
 import ViewDTRModal from "../dtr/ViewDTRModal";
 
-function PayrollStatusTable() {
+function PayrollHistoryTable() {
   const [payrolls, setPayrolls] = useState([]);
 
   const fetchPayrolls = async () => {
@@ -53,24 +53,26 @@ function PayrollStatusTable() {
 
           <tbody className="whitespace-nowrap divide-y divide-gray-200">
             {payrolls.length > 0 ? (
-              payrolls.map((payroll) => (
-                <tr key={payroll.id} className="odd:bg-gray-50">
-                  <td className="px-4 py-3 border-r border-gray-200">
-                    <p className="text-[13px] text-slate-900 font-medium">
-                      {payroll.staff?.first_name}
-                    </p>
-                  </td>
-                  <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
-                    {payroll.status}
-                  </td>
-                  <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
-                    <ViewDTRModal payrollId={payroll.id} />
-                  </td>
-                  <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
-                    {payroll.date_release || "N/A"}
-                  </td>
-                </tr>
-              ))
+              payrolls
+                .filter((payroll) => payroll.status === "Released")
+                .map((payroll) => (
+                  <tr key={payroll.id} className="odd:bg-gray-50">
+                    <td className="px-4 py-3 border-r border-gray-200">
+                      <p className="text-[13px] text-slate-900 font-medium">
+                        {payroll.staff?.first_name}
+                      </p>
+                    </td>
+                    <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
+                      {payroll.status}
+                    </td>
+                    <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
+                      <ViewDTRModal payrollId={payroll.id} />
+                    </td>
+                    <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
+                      {payroll.date_release || "N/A"}
+                    </td>
+                  </tr>
+                ))
             ) : (
               <tr>
                 <td
@@ -88,4 +90,4 @@ function PayrollStatusTable() {
   );
 }
 
-export default PayrollStatusTable;
+export default PayrollHistoryTable;

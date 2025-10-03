@@ -157,11 +157,11 @@ function DTRTable() {
     <div className="overflow-x-auto p-6">
       <div className="flex gap-4 justify-between items-center mb-4">
         <Search />
-        <Filter />
+        {/* <Filter /> */}
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-[2000px] border border-gray-200">
+        <table className="w-full border border-gray-200"> {/* min-w-[2000px] change if mausab huna2 */}
           <TableHeader />
           <tbody className="whitespace-nowrap divide-y divide-gray-200">
             {rows.map((row) => (
@@ -210,7 +210,7 @@ function DTRTable() {
 
                 {renderCell(row, "name")}
                 {renderCell(row, "fixedRate")}
-                {renderCell(row, "salaryAdjustment")}
+                {/* {renderCell(row, "salaryAdjustment")}
                 {renderCell(row, "totalSalaryAfterAdjustment")}
                 {renderCell(row, "overtimePay")}
                 {renderCell(row, "totalSalaryWithOvertime")}
@@ -221,7 +221,7 @@ function DTRTable() {
                 {renderCell(row, "totalAmountDue")}
                 {renderCell(row, "no")}
                 {renderCell(row, "checkNo")}
-                {renderCell(row, "remarks")}
+                {renderCell(row, "remarks")} */}
               </tr>
             ))}
 

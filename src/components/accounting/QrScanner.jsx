@@ -53,12 +53,12 @@ function QrScanner() {
               Payroll Details
             </h3>
             <div className="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
-              <span className="font-medium">ID:</span> <span>{payroll.id}</span>
-              <span className="font-medium">Payroll No:</span>{" "}
+              {/* <span className="font-medium">ID:</span> <span>{payroll.id}</span>
+              <span className="font-medium">Payroll No:</span>{" "} */}
               <span>{payroll.payroll_no}</span>
-              <span className="font-medium">Fixed Rate:</span>{" "}
+              <span className="font-medium">Salary:</span>{" "}
               <span>{payroll.fixed_rate}</span>
-              <span className="font-medium">Salary Adjustment:</span>{" "}
+              {/* <span className="font-medium">Salary Adjustment:</span>{" "}
               <span>{payroll.salary_adjustment}</span>
               <span className="font-medium">Salary After Adjustment:</span>{" "}
               <span>{payroll.salary_after_adjustment}</span>
@@ -81,7 +81,7 @@ function QrScanner() {
               <span className="font-medium">Gross Compensation:</span>{" "}
               <span>{payroll.gross_compensation}</span>
               <span className="font-medium">Date Prepared:</span>{" "}
-              <span>{payroll.date_prepared}</span>
+              <span>{payroll.date_prepared}</span> */}
               <span className="font-medium">Date Release:</span>{" "}
               <span>{payroll.date_release}</span>
             </div>

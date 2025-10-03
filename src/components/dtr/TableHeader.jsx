@@ -23,12 +23,12 @@ function TableHeader() {
                 </th>{" "}
                 <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
                   {" "}
-                  <Tooltip title="Fixed Rate" arrow placement="top">
+                  <Tooltip title="Salary" arrow placement="top">
                     {" "}
-                    <span>Fixed Rate</span>{" "}
+                    <span>Salary</span>{" "} {/* Fixed Rate */}
                   </Tooltip>{" "}
                 </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
+                {/* <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
                   {" "}
                   <Tooltip
                     title="SALARY ADJUSTMENT DUE TO EFFICTIVITY OF CONTRACT"
@@ -123,7 +123,7 @@ function TableHeader() {
                     {" "}
                     <span>REMARKS</span>{" "}
                   </Tooltip>{" "}
-                </th>{" "}
+                </th>{" "} */}
               </tr>{" "}
             </thead>
     </>
