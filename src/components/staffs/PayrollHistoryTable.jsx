@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Search from "../dtr/Search";
 import api from "../../assets/api";
 import ViewDTRModal from "../dtr/ViewDTRModal";
-
+import ViewQrModal from "./ViewQrModal";
 function PayrollHistoryTable() {
   const [payrolls, setPayrolls] = useState([]);
 
@@ -45,6 +45,9 @@ function PayrollHistoryTable() {
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Details
               </th>
+               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+                QR Code
+              </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Release Date
               </th>
@@ -68,6 +71,9 @@ function PayrollHistoryTable() {
                     <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
                       <ViewDTRModal payrollId={payroll.id} />
                     </td>
+                     <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
+                    <ViewQrModal payrollId={payroll.id}/>
+                  </td>
                     <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
                       {payroll.date_release || "N/A"}
                     </td>

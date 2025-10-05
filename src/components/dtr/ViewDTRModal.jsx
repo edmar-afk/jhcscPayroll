@@ -5,26 +5,42 @@ import api from "../../assets/api";
 function ViewDTRModal({ payrollId }) {
   const [open, setOpen] = useState(false);
   const [payroll, setPayroll] = useState(null);
+  const [shares, setShares] = useState(null);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
     if (open && payrollId) {
-      api
-        .get(`/api/payrolls/${payrollId}/`)
-        .then((res) => {
-          setPayroll(res.data);
-        })
-        .catch((err) => {
-          console.error("Error fetching payroll:", err);
-        });
+      const fetchData = async () => {
+        try {
+          const [payrollRes, sharesRes] = await Promise.all([
+            api.get(`/api/payrolls/${payrollId}/`),
+            api.get(`/api/payroll/${payrollId}/government-shares/`),
+          ]);
+          setPayroll(payrollRes.data);
+          setShares(sharesRes.data);
+        } catch (err) {
+          console.error("Error fetching data:", err);
+        }
+      };
+      fetchData();
     }
   }, [open, payrollId]);
 
+  const totalDeductions =
+    shares && (Number(shares.sss) || 0) + (Number(shares.gsis) || 0);
+
+  const netPay =
+    payroll && totalDeductions
+      ? Number(payroll.fixed_rate) - totalDeductions
+      : payroll
+      ? Number(payroll.fixed_rate)
+      : 0;
+
   return (
     <div>
-      <p className="" onClick={handleOpen}>
+      <p className="cursor-pointer text-blue-500" onClick={handleOpen}>
         View Payroll
       </p>
 
@@ -48,22 +64,44 @@ function ViewDTRModal({ payrollId }) {
 
           {payroll ? (
             <Box>
-              {/* <Typography>
-                <b>ID:</b> {payroll.id}
-              </Typography> */}
-
-              <Typography>
+              <p>
                 <b>Salary:</b> ₱ {Number(payroll.fixed_rate).toLocaleString()}
-              </Typography>
-
-              <Typography>
+              </p>
+              <p>
                 <b>Date Released:</b>{" "}
                 {new Date(payroll.date_release).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
                   year: "numeric",
                 })}
-              </Typography>
+              </p>
+
+              <div className="mt-4">
+                <p className="font-bold text-blue-600">
+                  Government Shares Deductions
+                </p>
+                {shares ? (
+                  <div>
+                    <p>
+                      <b>SSS:</b> ₱ {Number(shares.sss).toLocaleString()}
+                    </p>
+                    <p>
+                      <b>GSIS:</b> ₱ {Number(shares.gsis).toLocaleString()}
+                    </p>
+                    <p className="mt-2">
+                      <b>Total Deductions:</b> ₱{" "}
+                      {totalDeductions.toLocaleString()}
+                    </p>
+                    <p>
+                      <b>Total :</b> ₱ {netPay.toLocaleString()}
+                    </p>
+                  </div>
+                ) : (
+                  <Typography color="text.secondary">
+                    No government shares been set.
+                  </Typography>
+                )}
+              </div>
             </Box>
           ) : (
             <Typography>Loading payroll...</Typography>
