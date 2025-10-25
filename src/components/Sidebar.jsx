@@ -52,6 +52,7 @@ function Sidebar() {
     ],
     Cashier: [
       // { name: "Dashboard", path: "/dashboard", icon: <DashboardIcon /> },
+      { name: "Evaluate Payroll", path: "/DTR", icon: <AssessmentIcon /> },
       { name: "Scan QR", path: "/qr-scanner", icon: <QrCodeScannerIcon /> },
       { name: "Payroll Lists", path: "/payroll-lists", icon: <ListAltIcon /> },
     ],
