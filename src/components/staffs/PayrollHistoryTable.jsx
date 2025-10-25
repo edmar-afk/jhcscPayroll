@@ -43,9 +43,9 @@ function PayrollHistoryTable() {
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Payroll Details
               </th>
-              {/* <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+              <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Details
-              </th> */}
+              </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 QR Code
               </th>
@@ -69,9 +69,9 @@ function PayrollHistoryTable() {
                     <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
                       <PayrollStatusModal payrollId={payroll.id} />
                     </td>
-                    {/* <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
+                    <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
                       <ViewDTRModal payrollId={payroll.id} />
-                    </td> */}
+                    </td>
                     <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
                       <ViewQrModal payrollId={payroll.id} />
                     </td>

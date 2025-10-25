@@ -6,7 +6,7 @@ import Sidebar from "../Sidebar";
 function QrScanner() {
   const [data, setData] = useState(null);
   const [payroll, setPayroll] = useState(null);
-  // const [shares, setShares] = useState(null);
+  const [shares, setShares] = useState(null);
   const [statusData, setStatusData] = useState(null);
   const [error, setError] = useState("");
 
@@ -20,10 +20,10 @@ function QrScanner() {
           const res = await api.get(`/api/payrolls/${payrollId}/`);
           setPayroll(res.data);
 
-          // const shareRes = await api.get(
-          //   `/api/payroll/${res.data.id}/government-shares/`
-          // );
-          // setShares(shareRes.data);
+          const shareRes = await api.get(
+            `/api/payroll/${res.data.id}/government-shares/`
+          );
+          setShares(shareRes.data);
 
           const statusRes = await api.get(
             `/api/payroll/${res.data.id}/status/`
@@ -51,13 +51,13 @@ function QrScanner() {
   //   });
   // };
 
-  // const formatNumber = (num) => Number(num).toLocaleString();
+  const formatNumber = (num) => Number(num).toLocaleString();
 
-  // const totalAfterDeductions =
-  //   payroll && shares
-  //     ? Number(payroll.fixed_rate || 0) -
-  //       (Number(shares.gsis || 0) + Number(shares.sss || 0))
-  //     : null;
+  const totalAfterDeductions =
+    payroll && shares
+      ? Number(payroll.fixed_rate || 0) -
+        (Number(shares.gsis || 0) + Number(shares.sss || 0))
+      : null;
 
   return (
     <>
@@ -101,7 +101,7 @@ function QrScanner() {
               <span>{formatDate(payroll.date_release)}</span>
             </div> */}
 
-            {/* {shares && (
+            {shares && (
               <div className="mt-4 pt-4 border-t border-dashed border-gray-300">
                 <h4 className="text-md font-semibold text-gray-700 mb-2">
                   Government Shares
@@ -124,7 +124,7 @@ function QrScanner() {
                   </span>
                 </div>
               </div>
-            )} */}
+            )}
 
             {statusData && (
               <div className="">

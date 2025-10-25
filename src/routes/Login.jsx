@@ -40,7 +40,7 @@ function Login() {
       } else if (res.data.is_staff && !res.data.is_superuser) {
         navigate("/payroll-lists");
       } else {
-        navigate("/staff-dashboard");
+        navigate("/payroll-status");
       }
     }
   } catch (error) {
