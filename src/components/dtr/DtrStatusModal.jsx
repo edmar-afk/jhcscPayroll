@@ -179,7 +179,7 @@ function DtrStatusModal({ payrollId, staffName }) {
           </span>
         </p>{" "}
         <p className="text-xs text-gray-500 italic">
-          Reason: "{current.reason || "No reason provided"}"
+          Details: "{current.reason || "No details provided"}"
         </p>
       </>
     );
@@ -291,7 +291,7 @@ function DtrStatusModal({ payrollId, staffName }) {
 
                   {status && (
                     <textarea
-                      placeholder={`Input a reason why you ${status} this Payroll`}
+                      placeholder={`Input details why you ${status} this Payroll`}
                       value={reason}
                       onChange={(e) => setReason(e.target.value)}
                       className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300 resize-none h-20"
