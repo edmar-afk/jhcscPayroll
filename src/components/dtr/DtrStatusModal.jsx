@@ -119,14 +119,23 @@ function DtrStatusModal({ payrollId, staffName }) {
         [`${userInfo.first_name.split(" ")[0].toLowerCase()}_status`]: status,
         [`${userInfo.first_name.split(" ")[0].toLowerCase()}_reason`]: reason,
       };
+
       await api.put(endpoint, payload);
+
+      // 📨 Send SMS after successful update
+      await api.post(`/api/send-payroll-sms/${payrollId}/`);
+
       setOpen(false);
       setStatus("");
       setReason("");
-      Swal.fire("Success", "Status updated successfully!", "success");
+      Swal.fire(
+        "Success",
+        "Status updated and SMS sent successfully!",
+        "success"
+      );
     } catch (error) {
       setOpen(false);
-      Swal.fire("Error", "Failed to update status.", "error");
+      Swal.fire("Error", "Failed to update status or send SMS.", "error");
       console.error(error);
     }
   };
@@ -163,12 +172,14 @@ function DtrStatusModal({ payrollId, staffName }) {
 
     return (
       <>
-        <p className="text-xs text-gray-500 italic">Reason: "{current.reason || "No reason provided"}"</p>
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-gray-600">
           Current {current.label}:{" "}
           <span className="font-medium text-blue-600 cursor-pointer underline decoration-dotted">
             {current.value || "Pending"}
           </span>
+        </p>{" "}
+        <p className="text-xs text-gray-500 italic">
+          Reason: "{current.reason || "No reason provided"}"
         </p>
       </>
     );
@@ -185,8 +196,12 @@ function DtrStatusModal({ payrollId, staffName }) {
 
       <Modal open={open} onClose={handleClose}>
         <Box className="absolute top-1/2 left-1/2 w-[350px] -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">
-            Update DTR Status {staffName}
+          <h2 className="text-lg font-semibold text-gray-700">
+            Update DTR Status for
+          </h2>
+          <h2 className="text-lg font-semibold text-gray-700 mb-4">
+            {" "}
+            {staffName}
           </h2>
           <p className="text-sm mb-2 text-gray-500 flex flex-row items-center justify-between">
             From {userInfo.first_name}
@@ -276,7 +291,7 @@ function DtrStatusModal({ payrollId, staffName }) {
 
                   {status && (
                     <textarea
-                      placeholder={`Input a reason why you ${status} this DTR`}
+                      placeholder={`Input a reason why you ${status} this Payroll`}
                       value={reason}
                       onChange={(e) => setReason(e.target.value)}
                       className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300 resize-none h-20"
@@ -297,6 +312,10 @@ function DtrStatusModal({ payrollId, staffName }) {
                       Submit
                     </button>
                   </div>
+                  <p className="text-xs text-gray-500">
+                    By clicking Submit, the employees will notify via sms
+                    notification about their payroll status.
+                  </p>
                 </>
               );
             })()}

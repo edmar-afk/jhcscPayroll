@@ -3,6 +3,7 @@ import Search from "../dtr/Search";
 import api from "../../assets/api";
 import ViewDTRModal from "../dtr/ViewDTRModal";
 import ViewQrModal from "./ViewQrModal";
+import PayrollStatusModal from "./PayrollStatusModal";
 function PayrollHistoryTable() {
   const [payrolls, setPayrolls] = useState([]);
 
@@ -28,9 +29,9 @@ function PayrollHistoryTable() {
 
   return (
     <div>
-      <div className="overflow-x-auto p-6">
+      <div className="overflow-x-auto mt-20">
         <div className="flex gap-4 flex-wrap justify-between items-center mb-4">
-          <Search />
+          {/* <Search /> */}
         </div>
 
         <table className="min-w-full border border-gray-200">
@@ -40,12 +41,12 @@ function PayrollHistoryTable() {
                 Name
               </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
-                DTR Status
+                Payroll Details
               </th>
-              <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+              {/* <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Details
-              </th>
-               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+              </th> */}
+              <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 QR Code
               </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
@@ -66,14 +67,14 @@ function PayrollHistoryTable() {
                       </p>
                     </td>
                     <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
-                      {payroll.status}
+                      <PayrollStatusModal payrollId={payroll.id} />
                     </td>
-                    <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
+                    {/* <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
                       <ViewDTRModal payrollId={payroll.id} />
+                    </td> */}
+                    <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
+                      <ViewQrModal payrollId={payroll.id} />
                     </td>
-                     <td className="px-4 py-3 text-[13px] text-blue-600 font-medium border-r border-gray-200 cursor-pointer">
-                    <ViewQrModal payrollId={payroll.id}/>
-                  </td>
                     <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
                       {payroll.date_release || "N/A"}
                     </td>

@@ -56,11 +56,11 @@ function Sidebar() {
       { name: "Payroll Lists", path: "/payroll-lists", icon: <ListAltIcon /> },
     ],
     "Faculty/Staff": [
-      {
-        name: "Payroll History",
-        path: "/payroll-history",
-        icon: <HistoryIcon />,
-      },
+      // {
+      //   name: "Payroll History",
+      //   path: "/payroll-history",
+      //   icon: <HistoryIcon />,
+      // },
       { name: "Payroll Status", path: "/payroll-status", icon: <InfoIcon /> },
       { name: "Scan QR", path: "/qr-scanner", icon: <QrCodeScannerIcon /> },
     ],

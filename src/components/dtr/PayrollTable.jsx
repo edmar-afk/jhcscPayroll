@@ -56,7 +56,7 @@ function PayrollTable() {
                 Name
               </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
-                DTR Status
+                Payroll Status
               </th>
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Details

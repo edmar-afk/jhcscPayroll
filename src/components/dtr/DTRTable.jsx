@@ -81,6 +81,46 @@ function DTRTable() {
     fetchPayrolls();
   }, []);
 
+  // ✅ Move this function OUTSIDE the useEffect so it can be reused
+  const fetchPayrolls = async () => {
+    try {
+      const res = await api.get("/api/payrolls/");
+      const formatted = await Promise.all(
+        res.data.map(async (p) => {
+          const qrRes = await api.get(`/api/payroll/${p.id}/has_qr/`);
+          return {
+            id: p.id,
+            first_name: p.staff?.first_name,
+            name:
+              p.staff?.username ||
+              p.staff?.first_name + " " + p.staff?.last_name,
+            fixedRate: p.fixed_rate,
+            salaryAdjustment: p.salary_adjustment,
+            totalSalaryAfterAdjustment: p.salary_after_adjustment,
+            overtimePay: p.overtime_pay,
+            totalSalaryWithOvertime: p.total_salary_overtime,
+            absent1: p.absent,
+            lateUndertime: p.late,
+            grossCompensation: p.gross_compensation,
+            deductionsCoop: p.deductions,
+            totalAmountDue: p.total_amount_due,
+            no: p.payroll_no,
+            checkNo: p.check_no,
+            remarks: p.remarks,
+            hasQr: qrRes.data.has_qr,
+          };
+        })
+      );
+      setRows(formatted);
+    } catch (err) {
+      console.error("Failed to fetch payrolls", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPayrolls();
+  }, []);
+
   const handleEdit = (row) => {
     setEditRowId(row.id);
     setEditValues({ ...row });
