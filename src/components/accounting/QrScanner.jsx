@@ -39,17 +39,17 @@ function QrScanner() {
     }
   };
 
-  // const formatDate = (dateString) => {
-  //   if (!dateString) return "—";
-  //   return new Date(dateString).toLocaleString("en-US", {
-  //     month: "short",
-  //     day: "numeric",
-  //     year: "numeric",
-  //     hour: "numeric",
-  //     minute: "2-digit",
-  //     hour12: true,
-  //   });
-  // };
+  const formatDate = (dateString) => {
+    if (!dateString) return "—";
+    return new Date(dateString).toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
   const formatNumber = (num) => Number(num).toLocaleString();
 
@@ -89,7 +89,7 @@ function QrScanner() {
               </p>
             </div>
 
-            {/* <div className="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
+            <div className="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
               <span className="font-medium">Salary:</span>
               <span>
                 ₱
@@ -99,7 +99,7 @@ function QrScanner() {
               </span>
               <span className="font-medium">Date Release:</span>
               <span>{formatDate(payroll.date_release)}</span>
-            </div> */}
+            </div>
 
             {shares && (
               <div className="mt-4 pt-4 border-t border-dashed border-gray-300">
