@@ -5,6 +5,8 @@ import Filter from "./Filter";
 import TableHeader from "./TableHeader";
 import AddNewRow from "./AddNewRow";
 import api from "../../assets/api";
+
+import DtrStatusModal from "./DtrStatusModal";
 function DTRTable() {
   const [rows, setRows] = useState([]);
   const [editRowId, setEditRowId] = useState(null);
@@ -33,6 +35,44 @@ function DTRTable() {
           checkNo: p.check_no,
           remarks: p.remarks,
         }));
+        setRows(formatted);
+      } catch (err) {
+        console.error("Failed to fetch payrolls", err);
+      }
+    };
+    fetchPayrolls();
+  }, []);
+
+  useEffect(() => {
+    const fetchPayrolls = async () => {
+      try {
+        const res = await api.get("/api/payrolls/");
+        const formatted = await Promise.all(
+          res.data.map(async (p) => {
+            const qrRes = await api.get(`/api/payroll/${p.id}/has_qr/`);
+            return {
+              id: p.id,
+              first_name: p.staff?.first_name,
+              name:
+                p.staff?.username ||
+                p.staff?.first_name + " " + p.staff?.last_name,
+              fixedRate: p.fixed_rate,
+              salaryAdjustment: p.salary_adjustment,
+              totalSalaryAfterAdjustment: p.salary_after_adjustment,
+              overtimePay: p.overtime_pay,
+              totalSalaryWithOvertime: p.total_salary_overtime,
+              absent1: p.absent,
+              lateUndertime: p.late,
+              grossCompensation: p.gross_compensation,
+              deductionsCoop: p.deductions,
+              totalAmountDue: p.total_amount_due,
+              no: p.payroll_no,
+              checkNo: p.check_no,
+              remarks: p.remarks,
+              hasQr: qrRes.data.has_qr,
+            };
+          })
+        );
         setRows(formatted);
       } catch (err) {
         console.error("Failed to fetch payrolls", err);
@@ -106,6 +146,20 @@ function DTRTable() {
     setEditValues({});
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this payroll?"))
+      return;
+
+    try {
+      await api.delete(`/api/delete-payroll/${id}/`);
+      setRows((prev) => prev.filter((row) => row.id !== id));
+      alert("Payroll deleted successfully.");
+    } catch (err) {
+      console.error("Failed to delete payroll", err);
+      alert("Failed to delete payroll.");
+    }
+  };
+
   const handleAddNew = () => {
     setAddingNew(true);
     setEditValues({});
@@ -154,14 +208,16 @@ function DTRTable() {
   };
 
   return (
-    <div className="overflow-x-auto p-6">
+    <div className="overflow-x-auto pt-24">
       <div className="flex gap-4 justify-between items-center mb-4">
         <Search />
         {/* <Filter /> */}
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full border border-gray-200"> {/* min-w-[2000px] change if mausab huna2 */}
+        <table className="w-full border border-gray-200">
+          {" "}
+          {/* min-w-[2000px] change if mausab huna2 */}
           <TableHeader />
           <tbody className="whitespace-nowrap divide-y divide-gray-200">
             {rows.map((row) => (
@@ -194,16 +250,30 @@ function DTRTable() {
                         >
                           Edit
                         </button>
-                        <button className="text-red-600 text-[13px] cursor-pointer hover:scale-110 duration-300">
+                        <button
+                          onClick={() => handleDelete(row.id)}
+                          className="text-red-600 text-[13px] cursor-pointer hover:scale-110 duration-300"
+                        >
                           Delete
                         </button>
                       </div>
-                      <button
-                        onClick={() => handleGenerateQr(row)}
-                        className="text-green-600 text-[13px] mb-1 cursor-pointer hover:scale-110 duration-300 mr-2"
-                      >
-                        Generate QR
-                      </button>
+                      {row.hasQr ? (
+                        <span className="text-gray-500 text-[13px]">
+                          QR Generated
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => handleGenerateQr(row)}
+                          className="text-green-600 text-[13px] mb-1 cursor-pointer hover:scale-110 duration-300 mr-2"
+                        >
+                          Generate QR
+                        </button>
+                      )}
+
+                      <DtrStatusModal
+                        payrollId={row.id}
+                        staffName={row.first_name}
+                      />
                     </div>
                   )}
                 </td>
@@ -231,6 +301,7 @@ function DTRTable() {
                 handleChange={handleChange}
                 handleCancel={handleCancel}
                 setRows={setRows}
+                fetchPayrolls={fetchPayrolls}
               />
             )}
 

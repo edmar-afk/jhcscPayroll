@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import api from "../../assets/api";
 
-function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
+function AddNewRow({
+  editValues,
+  handleChange,
+  handleCancel,
+  setRows,
+  fetchPayrolls,
+}) {
   const [facultyStaff, setFacultyStaff] = useState([]);
 
   useEffect(() => {
@@ -35,12 +41,12 @@ function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
         if (cleanedValues[field]) {
           cleanedValues[field] = cleanedValues[field]
             .toString()
-            .replace(/,/g, ""); // remove commas before saving
+            .replace(/,/g, "");
         }
       });
 
-      const res = await api.post("/api/payroll/create/", cleanedValues);
-      setRows((prev) => [...prev, res.data]);
+      await api.post("/api/payroll/create/", cleanedValues);
+      await fetchPayrolls(); // 🔄 refresh table data instantly
       handleCancel();
     } catch (err) {
       console.error("Error saving payroll:", err.response?.data || err);
@@ -57,10 +63,7 @@ function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
   const handleNumberChange = (e, field) => {
     const rawValue = e.target.value.replace(/,/g, "");
     if (!isNaN(rawValue)) {
-      handleChange(
-        { target: { value: formatNumber(rawValue) } },
-        field
-      );
+      handleChange({ target: { value: formatNumber(rawValue) } }, field);
     } else {
       handleChange(e, field);
     }
@@ -69,7 +72,10 @@ function AddNewRow({ editValues, handleChange, handleCancel, setRows }) {
   return (
     <tr className="bg-gray-100">
       <td className="px-4 py-3 border-r border-gray-200">
-        <button onClick={handleSave} className="text-green-600 text-[13px] mr-2">
+        <button
+          onClick={handleSave}
+          className="text-green-600 text-[13px] mr-2"
+        >
           Save
         </button>
         <button onClick={handleCancel} className="text-red-600 text-[13px]">

@@ -25,12 +25,22 @@ function Sidebar() {
 
   const token = localStorage.getItem("userInfo");
   const userInfo = getUserInfoFromToken(token);
+  console.log(userInfo);
 
   let role = "Faculty/Staff";
-  if (userInfo?.is_staff && userInfo?.is_superuser) {
-    role = "HR/Accounting";
-  } else if (userInfo?.is_staff && !userInfo?.is_superuser) {
-    role = "Cashier";
+
+  if (userInfo?.is_staff) {
+    const office = userInfo.first_name?.trim();
+
+    if (
+      office === "HR Office" ||
+      office === "Budget Office" ||
+      office === "Office of the President"
+    ) {
+      role = "HR/Accounting";
+    } else if (office === "Cashier") {
+      role = "Cashier";
+    }
   }
 
   const menuItems = {
@@ -122,7 +132,11 @@ function Sidebar() {
         sx={{ display: { xs: "flex", md: "none" }, bgcolor: "#121e31" }}
       >
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => setOpen(true)}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={() => setOpen(true)}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6">Menu</Typography>
