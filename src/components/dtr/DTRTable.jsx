@@ -250,7 +250,7 @@ function DTRTable() {
   return (
     <div className="overflow-x-auto pt-24">
       <div className="flex gap-4 justify-between items-center mb-4">
-        <Search />
+        {/* <Search /> */}
         {/* <Filter /> */}
       </div>
 

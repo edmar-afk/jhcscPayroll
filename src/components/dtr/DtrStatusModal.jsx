@@ -123,7 +123,7 @@ function DtrStatusModal({ payrollId, staffName }) {
       await api.put(endpoint, payload);
 
       // 📨 Send SMS after successful update
-      await api.post(`/api/send-payroll-sms/${payrollId}/`);
+      // await api.post(`/api/send-payroll-sms/${payrollId}/`);
 
       setOpen(false);
       setStatus("");
