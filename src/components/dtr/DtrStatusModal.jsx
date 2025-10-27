@@ -38,11 +38,12 @@ function DtrStatusModal({ payrollId, staffName }) {
 
   const checkEditPermission = (data) => {
     const office = userInfo?.first_name;
+
     if (office === "HR Office") {
       setCanEdit(true);
       setWaitMessage("");
     } else if (office === "Budget Office") {
-      if (data.hr_status === "Accepted") {
+      if (data.hr_status === "Approved") {
         setCanEdit(true);
         setWaitMessage("");
       } else {
@@ -50,31 +51,31 @@ function DtrStatusModal({ payrollId, staffName }) {
         setWaitMessage("Wait for HR to Approve the payroll.");
       }
     } else if (office === "Office of the President") {
-      if (data.hr_status === "Accepted" && data.budget_status === "Accepted") {
+      if (data.hr_status === "Approved" && data.budget_status === "Approved") {
         setCanEdit(true);
         setWaitMessage("");
-      } else if (data.hr_status !== "Accepted") {
+      } else if (data.hr_status !== "Approved") {
         setCanEdit(false);
         setWaitMessage("Wait for HR to Approve the payroll.");
-      } else {
+      } else if (data.budget_status !== "Approved") {
         setCanEdit(false);
         setWaitMessage("Wait for Budget Office to Approve the payroll.");
       }
     } else if (office === "Cashier") {
       if (
-        data.hr_status === "Accepted" &&
-        data.budget_status === "Accepted" &&
-        data.president_status === "Accepted"
+        data.hr_status === "Approved" &&
+        data.budget_status === "Approved" &&
+        data.president_status === "Approved"
       ) {
         setCanEdit(true);
         setWaitMessage("");
-      } else if (data.hr_status !== "Accepted") {
+      } else if (data.hr_status !== "Approved") {
         setCanEdit(false);
         setWaitMessage("Wait for HR to Approve the payroll.");
-      } else if (data.budget_status !== "Accepted") {
+      } else if (data.budget_status !== "Approved") {
         setCanEdit(false);
         setWaitMessage("Wait for Budget Office to Approve the payroll.");
-      } else {
+      } else if (data.president_status !== "Approved") {
         setCanEdit(false);
         setWaitMessage(
           "Wait for Office of the President to Approve the payroll."
@@ -114,15 +115,22 @@ function DtrStatusModal({ payrollId, staffName }) {
       return;
     }
 
+    // ✅ FIXED PAYLOAD
+    const roleKeyMap = {
+      "HR Office": "hr",
+      "Budget Office": "budget",
+      "Office of the President": "president",
+      Cashier: "cashier",
+    };
+
+    const key = roleKeyMap[userInfo.first_name];
+    const payload = {
+      [`${key}_status`]: status,
+      [`${key}_reason`]: reason,
+    };
+
     try {
-      const payload = {
-        [`${userInfo.first_name.split(" ")[0].toLowerCase()}_status`]: status,
-        [`${userInfo.first_name.split(" ")[0].toLowerCase()}_reason`]: reason,
-      };
-
       await api.put(endpoint, payload);
-
-      // 📨 Send SMS after successful update
       // await api.post(`/api/send-payroll-sms/${payrollId}/`);
 
       setOpen(false);
@@ -225,7 +233,7 @@ function DtrStatusModal({ payrollId, staffName }) {
             }
             if (
               role === "Office of the President" &&
-              (!data || data.budget_status !== "Accepted")
+              (!data || data.budget_status !== "Approved")
             ) {
               return (
                 <p className="text-red-600 text-sm text-center">
