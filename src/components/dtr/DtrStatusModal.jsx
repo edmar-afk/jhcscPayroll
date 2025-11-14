@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Modal, Box, Tooltip } from "@mui/material";
 import Swal from "sweetalert2";
@@ -131,7 +132,7 @@ function DtrStatusModal({ payrollId, staffName }) {
 
     try {
       await api.put(endpoint, payload);
-      // await api.post(`/api/send-payroll-sms/${payrollId}/`);
+      await api.post(`/api/send-payroll-sms/${payrollId}/`);
 
       setOpen(false);
       setStatus("");
