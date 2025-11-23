@@ -47,7 +47,7 @@ function Sidebar() {
     "HR/Accounting": [
       // { name: "Dashboard", path: "/dashboard", icon: <DashboardIcon /> },
       { name: "Scan QR", path: "/qr-scanner", icon: <QrCodeScannerIcon /> },
-      { name: "Evaluate DTR", path: "/DTR", icon: <AssessmentIcon /> },
+      // { name: "Evaluate DTR", path: "/DTR", icon: <AssessmentIcon /> },
       // { name: "Payroll Lists", path: "/payroll-lists", icon: <ListAltIcon /> },
     ],
     Cashier: [

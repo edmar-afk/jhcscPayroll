@@ -36,7 +36,7 @@ function Login() {
       });
 
       if (res.data.is_staff && res.data.is_superuser) {
-        navigate("/DTR");
+        navigate("/qr-scanner");
       } else if (res.data.is_staff && !res.data.is_superuser) {
         navigate("/DTR");
       } else {

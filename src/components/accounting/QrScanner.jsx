@@ -71,7 +71,7 @@ function QrScanner() {
               </div>
             </div>
             {payroll && (
-              <div className="flex flex-row flex-wrap items-center gap-4 justify-between px-2">
+              <div className="flex flex-row flex-wrap items-center gap-4 justify-center lg:justify-between px-2">
                 {[
                   "cashier",
                   "budgetoffice",

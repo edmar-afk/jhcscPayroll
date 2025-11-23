@@ -148,11 +148,12 @@ function AddDtrModal() {
                       </LocalizationProvider>
                     ) : (
                       <input
-                        type="text"
+                        type="number"
                         name={key}
                         value={formData[key]}
                         onChange={handleChange}
                         className="w-full border px-3 py-2 rounded"
+                        step="any"
                       />
                     )}
                   </div>
