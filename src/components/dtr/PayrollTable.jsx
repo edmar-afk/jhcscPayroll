@@ -67,11 +67,11 @@ function PayrollTable() {
               <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                 Release Date
               </th>
-              {isCashier && (
+              {/* {isCashier && (
                 <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
                   Action
                 </th>
-              )}
+              )} */}
             </tr>
           </thead>
 
@@ -96,7 +96,7 @@ function PayrollTable() {
                   <td className="px-4 py-3 text-[13px] text-slate-900 font-medium border-r border-gray-200">
                     {payroll.date_release || "N/A"}
                   </td>
-                  {isCashier && (
+                  {/* {isCashier && (
                     <td className="flex flex-col gap-2 px-4 py-3 text-[13px] text-slate-600 font-medium border-r border-gray-200">
                       <Button
                         size="small"
@@ -110,7 +110,7 @@ function PayrollTable() {
                         refresh={fetchPayrolls}
                       />
                     </td>
-                  )}
+                  )} */}
                 </tr>
               ))
             ) : (

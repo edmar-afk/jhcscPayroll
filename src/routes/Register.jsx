@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import api from "../assets/api";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
-
+import { CircularProgress } from "@mui/material";
 function Register() {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -19,6 +19,7 @@ function Register() {
   };
 
   const handleRegister = async () => {
+    setLoading(true);
     try {
       const payload = {
         username: formData.email,
@@ -35,9 +36,7 @@ function Register() {
         title: "Registration Successful",
         text: "You can now login with your account",
         confirmButtonColor: "#2563eb",
-      }).then(() => {
-        navigate("/"); // 👈 redirect after success
-      });
+      }).then(() => navigate("/"));
 
       setFormData({
         first_name: "",
@@ -53,6 +52,8 @@ function Register() {
         text: err.response?.data?.detail || "Something went wrong",
         confirmButtonColor: "#ef4444",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -170,20 +171,21 @@ function Register() {
                   <button
                     type="button"
                     onClick={handleRegister}
-                    disabled={!passwordsMatch}
+                    disabled={!passwordsMatch || loading}
                     className={`w-full py-2 px-4 text-[15px] font-medium tracking-wide rounded-md text-white ${
                       passwordsMatch
                         ? "bg-blue-600 hover:bg-blue-700 cursor-pointer"
                         : "bg-red-500 cursor-not-allowed"
-                    }`}
+                    } flex items-center justify-center gap-2`}
                   >
+                    {loading && <CircularProgress size={20} color="inherit" />}
                     Register
                   </button>
                 </div>
                 <p className="text-slate-900 text-sm !mt-6 text-center">
                   Already have an account?{" "}
                   <Link
-                    to={'/'}
+                    to={"/"}
                     className="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold"
                   >
                     Log in
