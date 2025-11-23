@@ -1,133 +1,152 @@
-import React from 'react'
+import React from "react";
 import Tooltip from "@mui/material/Tooltip";
+
 function TableHeader() {
   return (
     <>
       <thead className="bg-white whitespace-nowrap sticky top-0 z-10">
-              {" "}
-              <tr className="border-b border-gray-200">
-                {" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="Action" arrow placement="top">
-                    {" "}
-                    <span>Action</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="Faculty/Staff Name" arrow placement="top">
-                    {" "}
-                    <span>Faculty/Staff Name</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="Salary" arrow placement="top">
-                    {" "}
-                    <span>Salary</span>{" "} {/* Fixed Rate */}
-                  </Tooltip>{" "}
-                </th>{" "}
-                {/* <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip
-                    title="SALARY ADJUSTMENT DUE TO EFFICTIVITY OF CONTRACT"
-                    arrow
-                    placement="top"
-                  >
-                    {" "}
-                    <span>
-                      {" "}
-                      SALARY ADJUSTMENT DUE TO EFFICTIVITY OF CONTRACT{" "}
-                    </span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip
-                    title="TOTAL SALARY AFTER ADJUSTMENT"
-                    arrow
-                    placement="top"
-                  >
-                    {" "}
-                    <span>TOTAL SALARY AFTER ADJUSTMENT</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="OVERTIME PAY" arrow placement="top">
-                    {" "}
-                    <span>OVERTIME PAY</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="OVERTIME PAY" arrow placement="top">
-                    {" "}
-                    <span>TOTAL SALARY WITH OVERTIME</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="ABSENT" arrow placement="top">
-                    {" "}
-                    <span>ABSENT</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="LATE/UNDERTIME" arrow placement="top">
-                    {" "}
-                    <span>LATE/UNDERTIME</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="GROSS COMPENSATION" arrow placement="top">
-                    {" "}
-                    <span>GROSS COMPENSATION</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="DEDUCTIONS:COOP" arrow placement="top">
-                    {" "}
-                    <span>DEDUCTIONS:COOP</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="TOTAL AMOUNT DUE" arrow placement="top">
-                    {" "}
-                    <span>TOTAL AMOUNT DUE</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="NO." arrow placement="top">
-                    {" "}
-                    <span>NO.</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="CHECK NO." arrow placement="top">
-                    {" "}
-                    <span>CHECK NO.</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "}
-                <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200 max-w-[150px] truncate">
-                  {" "}
-                  <Tooltip title="REMARKS" arrow placement="top">
-                    {" "}
-                    <span>REMARKS</span>{" "}
-                  </Tooltip>{" "}
-                </th>{" "} */}
-              </tr>{" "}
-            </thead>
+        <tr className="border-b border-gray-200">
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Action" arrow placement="top">
+              <span className="uppercase">Action</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Faculty/Staff Name" arrow placement="top">
+              <span className="uppercase">Faculty/Staff Name</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Salary" arrow placement="top">
+              <span className="uppercase">Basic Salary</span>
+            </Tooltip>
+          </th>
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Salary" arrow placement="top">
+              <span className="uppercase">Add: Pera/Aca</span>
+            </Tooltip>
+          </th>
+           <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Salary" arrow placement="top">
+              <span className="uppercase">Gross Monthly Income</span>
+            </Tooltip>
+          </th>
+         
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Date Released" arrow placement="top">
+              <span className="uppercase">PAYSLIP of the month</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Deductions" arrow placement="top">
+              <span className="uppercase">LESS: Deductions</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="GSIS Personal Share" arrow placement="top">
+              <span className="uppercase">GSIS/Personal Share</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="GSIS Consolidated Loan" arrow placement="top">
+              <span className="uppercase">GSIS/Consolidated Loan</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="GSIS MPL" arrow placement="top">
+              <span className="uppercase">GSIS/MPL</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="GSIS Educ Loan uppercase" arrow placement="top">
+              <span className="uppercase">GSIS/Educ. Asst. Loan</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="GSIS Emergency Loan" arrow placement="top">
+              <span className="uppercase">GSIS/Emergency Loan</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="PhilHealth Contribution" arrow placement="top">
+              <span className="uppercase">PHIC</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="HDMF Personal Share" arrow placement="top">
+              <span className="uppercase">HDMF Personal Share</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="HDMF Salary Loan" arrow placement="top">
+              <span className="uppercase">HDMF Salary Loan</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="FFASA" arrow placement="top">
+              <span className="uppercase">FFASA</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="1st Valley Bank Loan" arrow placement="top">
+              <span className="uppercase">1st Valley Bank Loan</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="HDMF MPL" arrow placement="top">
+              <span className="uppercase">HDMF/MPL</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="BIR Withholding" arrow placement="top">
+              <span className="uppercase">BIR</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Total Deductions" arrow placement="top">
+              <span className="uppercase">Total Deductions</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Net Monthly Income" arrow placement="top">
+              <span className="uppercase">Net Monthly Income</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="Date" arrow placement="top">
+              <span className="uppercase">Date</span>
+            </Tooltip>
+          </th>
+
+          <th className="px-4 py-3 text-left text-[13px] font-medium text-slate-600 border-r border-gray-200">
+            <Tooltip title="LDAAP ADA No." arrow placement="top">
+              <span className="uppercase">LDAAP-ADA No.</span>
+            </Tooltip>
+          </th>
+
+         
+        </tr>
+      </thead>
     </>
-  )
+  );
 }
 
-export default TableHeader
+export default TableHeader;
