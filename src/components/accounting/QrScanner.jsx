@@ -192,15 +192,56 @@ function QrScanner() {
                     Payroll Status
                   </h4>
 
-                  <div className="space-y-4">
-                    {Object.entries(statusData).map(([key, value]) => (
-                      <div key={key} className="border-b-2 border-dashed pb-2">
-                        <p className="font-extrabold text-blue-800">
-                          {key.toUpperCase()}
-                        </p>
-                        <p>Status: {value || "Pending"}</p>
-                      </div>
-                    ))}
+                  <div className="space-y-6">
+                    {[
+                      { key: "hr", label: "HR Office" },
+                      { key: "budget", label: "Budget Office" },
+                      { key: "president", label: "President’s Office" },
+                      { key: "cashier", label: "Cashier" },
+                    ].map(({ key, label }) => {
+                      const status = statusData[`${key}_status`] || "Pending";
+                      const reason = statusData[`${key}_reason`];
+                      const date = statusData[`${key}_date_updated`];
+
+                      return (
+                        <div
+                          key={key}
+                          className="p-4 rounded-lg bg-gray-50 shadow-sm"
+                        >
+                          <p className="text-lg font-bold text-blue-800 mb-2">
+                            {label}
+                          </p>
+
+                          <p>
+                            <span className="font-semibold">Status:</span>{" "}
+                            <span
+                              className={
+                                status === "Approved"
+                                  ? "text-green-600 font-bold"
+                                  : status === "Rejected"
+                                  ? "text-red-600 font-bold"
+                                  : "text-gray-700 font-bold"
+                              }
+                            >
+                              {status}
+                            </span>
+                          </p>
+
+                          {reason && (
+                            <p className="mt-1">
+                              <span className="font-semibold">Reason:</span>{" "}
+                              <span className="text-gray-700">{reason}</span>
+                            </p>
+                          )}
+
+                          {date && (
+                            <p className="mt-1 text-sm text-gray-500">
+                              Last updated: {date}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
