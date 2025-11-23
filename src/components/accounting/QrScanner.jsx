@@ -6,6 +6,7 @@ import logo from "../../assets/logo.png";
 import EditDtrModal from "../EditDtrModal";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { getUserInfoFromToken } from "../../utils/auth";
+import DtrStatusModal from "../dtr/DtrStatusModal";
 function QrScanner() {
   const [data, setData] = useState(null);
   const [payroll, setPayroll] = useState(null);
@@ -78,7 +79,8 @@ function QrScanner() {
                   "hroffice",
                   "presidentoffice",
                 ].includes(userInfo.username) && (
-                  <EditDtrModal payrollId={payroll.id} isScanner={true} />
+                  <DtrStatusModal payrollId={payroll.id}
+                    staffName={payroll.staff?.first_name}/>
                 )}
                 {![
                   "cashier",
