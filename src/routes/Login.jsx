@@ -38,7 +38,7 @@ function Login() {
       if (res.data.is_staff && res.data.is_superuser) {
         navigate("/DTR");
       } else if (res.data.is_staff && !res.data.is_superuser) {
-        navigate("/payroll-lists");
+        navigate("/DTR");
       } else {
         navigate("/payroll-status");
       }
