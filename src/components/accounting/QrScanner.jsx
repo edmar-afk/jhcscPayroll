@@ -79,8 +79,11 @@ function QrScanner() {
                   "hroffice",
                   "presidentoffice",
                 ].includes(userInfo.username) && (
-                  <DtrStatusModal payrollId={payroll.id}
-                    staffName={payroll.staff?.first_name}/>
+                  <DtrStatusModal
+                    payrollId={payroll.id}
+                    staffName={payroll.staff?.first_name}
+                    isScanner={true}
+                  />
                 )}
                 {![
                   "cashier",
@@ -104,7 +107,17 @@ function QrScanner() {
             )}
           </div>
           {payroll && (
-            <div className="w-full md:max-w-lg bg-white rounded-2xl shadow-md p-6 flex-grow mt-20 lg:mt-0">
+            <div className="w-full md:max-w-lg bg-white rounded-2xl shadow-md p-6 flex-grow mt-20 lg:mt-0 relative">
+              {["budgetoffice", "hroffice", "presidentoffice"].includes(
+                userInfo.username
+              ) && (
+                <div className="absolute flex flex-row w-full h-full bg-white/10 left-0 top-0 rounded-2xl backdrop-blur-sm">
+                  <p className="text-center text-2xl font-extrabold text-red-500 mx-auto pt-24">
+                    You can't View this Payroll
+                  </p>
+                </div>
+              )}
+
               <div className="mb-4 border-b pb-2 flex flex-row items-center justify-between">
                 <div className="">
                   {" "}

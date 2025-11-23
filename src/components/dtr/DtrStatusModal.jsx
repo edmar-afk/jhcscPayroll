@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import api from "../../assets/api";
 import { getUserInfoFromToken } from "../../utils/auth";
 
-function DtrStatusModal({ payrollId, staffName }) {
+function DtrStatusModal({ payrollId, staffName, isScanner }) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [reason, setReason] = useState("");
@@ -198,7 +198,11 @@ function DtrStatusModal({ payrollId, staffName }) {
     <>
       <button
         onClick={handleOpen}
-        className="text-blue-600 text-[13px] cursor-pointer hover:scale-110 duration-300"
+        className={
+          isScanner
+            ? "bg-blue-600 text-white px-4 py-2 rounded text-[16px] cursor-pointer hover:scale-110 duration-300"
+            : "text-blue-600 text-[13px] cursor-pointer hover:scale-110 duration-300"
+        }
       >
         DTR Status
       </button>

@@ -88,6 +88,7 @@ function DTRTable() {
                   <DtrStatusModal
                     payrollId={row.id}
                     staffName={row.staff?.first_name}
+                    isScanner={false}
                   />
                 </td>
 
