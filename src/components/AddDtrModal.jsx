@@ -83,6 +83,8 @@ function AddDtrModal() {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const isFormValid = Object.values(formData).every((v) => v !== "");
+
   return (
     <>
       <button
@@ -98,6 +100,9 @@ function AddDtrModal() {
 
           <form
             onSubmit={handleSubmit}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !isFormValid) e.preventDefault();
+            }}
             className="space-y-3 max-h-[70vh] overflow-y-auto pr-2"
           >
             <div>
@@ -171,9 +176,12 @@ function AddDtrModal() {
 
               <button
                 type="submit"
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                disabled={!isFormValid}
+                className={`px-4 py-2 rounded text-white ${
+                  isFormValid ? "bg-green-600 hover:bg-green-700" : "bg-red-600"
+                }`}
               >
-                Save Payroll
+                {isFormValid ? "Save Payroll" : "Fill all inputs"}
               </button>
             </div>
           </form>
